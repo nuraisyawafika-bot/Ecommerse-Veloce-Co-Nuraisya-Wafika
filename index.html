@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veloce Co. | Premium E-Commerce</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Google Analytics Dummy -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DUMMY12345"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-DUMMY12345');
+    </script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="brand-logo">Veloce<span>Co.</span></a>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Cari jam tangan impian Anda...">
+                <select id="category-filter">
+                    <option value="all">Semua Kategori</option>
+                    <option value="luxury">Luxury</option>
+                    <option value="sport">Sport</option>
+                    <option value="classic">Classic</option>
+                </select>
+            </div>
+            <div class="nav-actions">
+                <button id="wishlist-toggle-btn" class="wishlist-toggle-btn">
+                    ❤️ Wishlist (<span id="wishlist-count">0</span>)
+                </button>
+                <button id="cart-toggle-btn" class="cart-btn">
+                    🛒 Keranjang (<span id="cart-count">0</span>)
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <header class="hero-banner">
+        <div class="hero-content">
+            <h1>Kemewahan Waktu dalam Genggaman</h1>
+            <p>Temukan koleksi jam tangan eksklusif untuk mendefinisikan karakter Anda bersama Veloce Co.</p>
+            <a href="#katalog" class="btn-primary">Jelajahi Koleksi</a>
+        </div>
+    </header>
+
+    <!-- UTAMA -->
+    <main class="container">
+        <!-- KATALOG -->
+        <section id="katalog" class="katalog-section">
+            <h2 class="section-title">Koleksi Eksklusif Kami</h2>
+            <div class="products-grid" id="products-container"></div>
+        </section>
+
+        <!-- SIDEBAR KERANJANG -->
+        <section id="cart-sidebar" class="cart-sidebar">
+            <div class="cart-header">
+                <h3>Keranjang Belanja</h3>
+                <button id="close-cart-btn" class="close-btn">&times;</button>
+            </div>
+            <div id="cart-items-container"></div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Total Harga:</span>
+                    <span id="cart-total-price">Rp 0</span>
+                </div>
+                <button id="checkout-btn" class="btn-checkout">Lanjutkan ke Pembayaran</button>
+            </div>
+        </section>
+
+        <!-- SIDEBAR WISHLIST -->
+        <section id="wishlist-sidebar" class="cart-sidebar">
+            <div class="cart-header">
+                <h3>Wishlist Saya</h3>
+                <button id="close-wishlist-btn" class="close-btn">&times;</button>
+            </div>
+            <div id="wishlist-items-container"></div>
+        </section>
+
+        <!-- MODAL CHECKOUT -->
+        <div id="checkout-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-checkout-modal" class="close-btn">&times;</span>
+                <h2>Formulir Pengiriman & Pembayaran</h2>
+                <form id="order-form" style="margin-top: 1rem;">
+                    <div class="form-group">
+                        <label for="customer-name">Nama Lengkap *</label>
+                        <input type="text" id="customer-name" required minlength="3">
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-email">Email Aktif *</label>
+                        <input type="email" id="customer-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-address">Alamat Lengkap *</label>
+                        <textarea id="customer-address" rows="2" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment-method">Metode Pembayaran (Simulasi Midtrans)</label>
+                        <select id="payment-method">
+                            <option value="bca-va">BCA Virtual Account</option>
+                            <option value="mandiri-va">Mandiri Bill Payment</option>
+                            <option value="qris">QRIS (Gopay/OVO/Dana)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit-order">Proses Pembayaran Aman</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- MODAL DETAIL PRODUK -->
+        <div id="detail-modal" class="modal">
+            <div class="modal-content detail-modal-content">
+                <span id="close-detail-modal" class="close-btn">&times;</span>
+                <div id="detail-product-body" class="detail-grid" style="margin-top: 1rem;"></div>
+            </div>
+        </div>
+
+        <!-- LOADING PAYMENT OVERLAY -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="spinner"></div>
+            <h3>Menghubungkan ke Gateway Pembayaran...</h3>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 0.5rem;">Mohon jangan menutup halaman ini.</p>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>Veloce Co.</h3>
+                <p>Penyedia jam tangan premium original dengan jaminan garansi global.</p>
+                <div class="footer-contact" style="margin-top: 1.2rem; font-size: 0.9rem; color: #cbd5e1; line-height: 1.6;">
+                    <p>📍 Jl. Kemang Raya No. 45, Jakarta Selatan, Indonesia</p>
+                    <p>📞 WhatsApp: +62 812-3456-7890</p>
+                    <p>✉️ Email: support@veloceco.id</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#katalog">Katalog</a></li>
+                </ul>
+            </div>
+            <div class="footer-security">
+                <h4>Keamanan Transaksi</h4>
+                <p>🛡️ Dilindungi enkripsi SSL & Simulasi Sandbox Payment Gateway.</p>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top: 3rem; border-top: 1px solid #334155; padding-top: 2rem;">
+            <h4 style="text-align: center; margin-bottom: 1.5rem; color: var(--text-light);">Apa Kata Mereka?</h4>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Veloce Chrono Gold-nya mewah banget! Pengiriman cepat dan packaging-nya sangat aman. Sangat direkomendasikan!"</p>
+                    <p class="testimonial-user">- Dimas Nugraha, Jakarta</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Beli Fossil Machine Chronograph untuk hadiah suami, dia suka sekali. Dipakai camping dan trekking juga nyaman, pas dipakai juga kelihatan gagah."</p>
+                    <p class="testimonial-user">- Siti Rahma, Bandung</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Pelayanan CS via email sangat responsif saat saya menanyakan garansi. Jam tangan 100% original."</p>
+                    <p class="testimonial-user">- Kevin Wijaya, Surabaya</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Veloce Co. Semua Hak Dilindungi. Tugas Akhir E-Commerce.</p>
+        </div>
+    </footer>
+
+    <!-- Modular Scripts Initialization Order -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
